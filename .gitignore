@@ -1,0 +1,14 @@
+﻿# 依存パッケージ (サイズが大きく、npm installで再生成できるため不要)
+/node_modules
+/backend/node_modules
+
+# 環境変数ファイル (パスワードなどの機密情報が含まれるため絶対にアップロードしない)
+.env
+backend/.env
+
+# OSが自動生成するファイル
+.DS_Store
+Thumbs.db
+
+# ログファイル
+*.log
