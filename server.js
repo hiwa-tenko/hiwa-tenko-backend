@@ -24,6 +24,8 @@ app.get('/', (req, res) => {
   res.send('Hiwa Tenko Backend is running!');
 });
 
+
+
 // フロントエンドからPOSTリクエストを受け取るエンドポイント
 app.post('/api/reports', async (req, res) => {
   console.log('Received data:', req.body);
@@ -83,9 +85,23 @@ app.post('/api/reports', async (req, res) => {
   res.status(200).json({ status: 'success', message: '点呼データを正常に記録しました。' });
 });
 
+// https://hiwa-tenko-backend.onrender.com/api/health Failed to load resource: the server responded with a status of 404 ()の対策
+// RenderのCron Jobから叩かれるためのヘルスチェック用エンドポイント(Cron Jobが有料プランなので保留)
+//app.get('/api/health', (req, res) => {
+  //res.status(200).send('OK');
+//});
+
+// 例: バックエンドのExpressアプリケーションに以下のコードを追加
+
+// ヘルスチェック用のエンドポイント
+// フロントエンドからの定期的なpingに応答し、サーバーのスリープを防ぐ
+app.get('/api/health', (req, res) => {
+  // 200 OKステータスと簡単なJSONメッセージを返す
+  res.status(200).json({ status: 'ok', message: 'Server is active.' });
+});
+
+
 // サーバーを起動
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-
